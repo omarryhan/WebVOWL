@@ -2477,3 +2477,24 @@ a#locateSearchResult {
 .disabledLabelForSlider {
     color: #808080;
 }
+
+#addConceptButton {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	outline: inherit;
+    width: 85%;
+    background: #29A3B9;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    height: 50px;
+    color: white;
+    cursor: pointer;
+}
+
+#addConceptButton:hover {
+    background: #14bcda;
+}
