@@ -78,12 +78,6 @@ module.exports = (function (){
     
     this.toggleFocus = function (){
       that.focused(!that.focused());
-      if (!that.focused()) {
-        window.parent.postMessage({
-          title: 'selectConcept',
-          concept: that.nodeElement().select("circle").title(),
-        }, {targetOrigin: 'http://localhost:5000'})
-      }
       if ( that.nodeElement() )
         that.nodeElement().select("circle").classed("focused", that.focused());
       graph.resetSearchHighlight();

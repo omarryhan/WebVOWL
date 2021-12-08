@@ -716,6 +716,24 @@ module.exports = function ( graphContainerSelector ){
     }
     
     nodeElements.on("click", function ( clickedNode ){
+      // window.parent.postMessage({
+      //   title: 'selectConcept',
+      //   concept: clickedNode.id(),
+      // }, {targetOrigin: 'http://localhost:5000'})
+      if (!window.__odini) {
+        window.__odini = {}
+      }
+
+      window.__odini.currentlySelectedNodeId = clickedNode.id();
+      const titles = clickedNode
+        .nodeElement()
+        .selectAll('title')
+        .each(function() { return this.innerHTML; })
+        .flat(Infinity)
+        .map(title => title.innerHTML || '')
+      if (titles.length && typeof titles[0] === 'string') {
+        window.__odini.currentlySelectedNodeName = titles[0]
+      }
       
       // manaual double clicker // helper for iphone 6 etc...
       if ( touchDevice === true && doubletap() === true ) {

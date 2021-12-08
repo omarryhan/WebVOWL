@@ -557,6 +557,18 @@ module.exports = function ( graph ){
   
   sidebar.updateShowedInformation = function (){
     var editMode = graph.editorMode();
+    d3.select("#addConceptButton").on("click", () => {
+      if (window.__odini && window.__odini.currentlySelectedNodeId && window.__odini.currentlySelectedNodeName) {
+        window.parent.postMessage({
+          title: 'selectConcept',
+          concept: {
+            name: window.__odini.currentlySelectedNodeName,
+            id: window.__odini.currentlySelectedNodeId
+          },
+        }, {targetOrigin: 'http://localhost:5000'})
+      }
+    })
+    d3.select("#addConceptButton").classed("hidden", editMode)
     d3.select("#generalDetails").classed("hidden", editMode);
     d3.select("#generalDetailsEdit").classed("hidden", !editMode);
     
